@@ -1,0 +1,33 @@
+revesing a series of numbers using arithmatic operators.
+#include <stdio.h>//header file
+
+int main()//main function
+{
+    int a=2,b=3,c=4,d=5,e=6,f=7,a1,b1,c1,d1,e1,f1;//initialize the variable names
+    
+    printf("Before Revesing");//prints the statement
+    printf("\n %d %d %d %d %d %d",a,b,c,d,e,f);//prints the int values
+    // arithmatic operations to reverse a series of numbers
+    a1=b+c;
+    b1=a+c;
+    c1=a+b;
+    d1=a+a;
+    e1=f-c;
+    f1=c-a;
+    printf("\nafter revesing\n");//prints the statement
+    printf("%d %d %d %d %d %d \n",a1,b1,c1,d1,e1,f1);//prints number in reverse order.
+
+}
+
+Psuedocode:
+
+this program prints the series of numbers and reverse its order.
+
+main function
+{
+  assign values with variable names.
+  get the values using printf command.
+  perform some arithmatic operations to reverse the given number.
+  get the numbers in reverse order using print statement.
+}
+  
