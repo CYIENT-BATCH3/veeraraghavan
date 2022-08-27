@@ -1,0 +1,17 @@
+Write a program to print input data from user by using scanf and printf by various format specifiers.
+#include <stdio.h>//header file
+
+int main()//main function
+{
+    int a;//initialize a value 
+   char ch;//assigning a caharacter value
+    float b;//assigning float value to nget decimal points
+    long int v;//initialize long int
+    printf("the valuue of a is ");//prints the value of a
+    scanf("%d %c %f %ld",&a,&ch,&b,&v);//gets the value from user using scanf
+    printf("\nthe value of int a is %d",a);//prints the int value
+    printf("\nthe value of b is %c",ch);//prints the character value
+    printf("\nthe value of d is %f",b);//prints the float value
+    printf("\nthe value of d is %ld",v);//prints the long int value
+   return 0; 
+}
