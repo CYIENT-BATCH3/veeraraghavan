@@ -1,0 +1,14 @@
+ program to find raduis of circle.
+
+
+#include <stdio.h>//header file
+#define PI 3.14//define constant value PI as 3.14
+int main()//main function
+{
+    float r,a;//consider float for getting decimal values
+    printf("enter the radius");//print the statement
+    scanf("%f",&r);//gets the value
+    a=PI*r*r;//formula to find radius of cirtcle
+    printf("area of circle is %f",a);//prints the area of circle value.
+
+}
