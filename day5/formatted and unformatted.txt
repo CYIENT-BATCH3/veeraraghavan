@@ -1,0 +1,20 @@
+Program using formated and unformatted.
+#include <stdio.h>//header file
+
+int main() //main function
+{
+    printf("  Formatted Inputs\n");//ptints the statement
+    int a;//initialize a integer variable name
+    float b;//float variable name
+    double d;//double
+    char c;//initialize a character variable name
+    char v;
+    scanf("\n%d  %f  %lf  %c",&a,&b,&d,&c);//gets the variable 
+    printf("The values are a=%d \nb=%f \nd=%lf \nc=%c",a,b,d,c);//prints the values
+    printf("\n Unformatted inputs and outputs\n");
+    printf("enter a character\n");
+    v=getchar();//to get the character
+    printf("\ndell");//prints the statement
+    putchar(v);//prints the character
+    return 0;
+}
