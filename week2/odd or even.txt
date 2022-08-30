@@ -1,0 +1,15 @@
+WAP to check the number is odd or even?
+#include <stdio.h>
+
+int main()
+{
+ int n;
+  printf("enter the number:");
+  scanf("%d",&n);
+ if(n%2==0)          //arithmatic function to find even numbers
+ printf("the number is even");   //if even number means prints the statement
+ else
+ printf("the number is odd");  //if odd means prints the statement
+ 
+
+}
