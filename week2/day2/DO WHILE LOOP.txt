@@ -1,0 +1,16 @@
+write a program to print natural numbers using do while loop.
+#include <stdio.h>
+
+int main()
+{
+    int n,j=1;
+    printf("To print the natural numbers");
+    scanf("%d",&n);
+    do
+    {
+        printf("\n%d",j);
+        j++;
+    }
+    
+while(j<=n);
+}
