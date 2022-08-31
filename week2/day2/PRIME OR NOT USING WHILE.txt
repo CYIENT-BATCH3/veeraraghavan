@@ -1,0 +1,27 @@
+WAP to check whethear the number is prime or not.
+#include <stdio.h>//header file
+
+int main()//main function
+{
+    int n,i=1,c=0;//initilaze 
+    printf("enetr the number to check the no is prime or not\n");
+    scanf("%d",&n);
+    while(i<=n/2)
+    {
+        if(n%i==0)
+        {
+            c=1;
+            break;
+        }
+        i++;
+    }
+    //i++;
+    if(c==0)
+    {
+        printf("the numb is prime");
+    }
+    else
+    {
+        printf("the num is not prime");
+    }
+}
