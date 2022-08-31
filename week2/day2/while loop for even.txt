@@ -1,0 +1,16 @@
+wap for while loop to print even numbers for 1 to n values.
+#include<stdio.h>
+ int main()
+ {
+   int n,i=1;
+  printf("enter the number:");
+  scanf("%d",&n);
+ while(i<=n) 
+ {
+     if(i%2==0)
+     {
+ printf("%d",i);
+ }
+ i++;
+ }
+ }
