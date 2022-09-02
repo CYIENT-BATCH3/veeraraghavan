@@ -1,0 +1,20 @@
+WAP to print sum of N natural numbers.
+#include <stdio.h> //header file  
+
+int main()  //main function
+{
+    int a[5],i,n,sum=0; //initialize the variables
+    printf("enter the numbers\n"); //prints the statement
+    scanf("%d",&n);
+    printf("enetred numbers are");
+    for(i=0;i<n;i++) //for loop is used to print contineous values
+    {
+    scanf("\n%d",&a[i]); //reads value from the user
+    }
+    for(i=0;i<n;i++)
+    {
+    sum=sum+a[i]; //prints the value
+    }
+    printf(" the sum of %d natural numbers are %d",n,sum);
+    return 0;
+}

@@ -1,0 +1,32 @@
+
+#include <stdio.h>
+
+int main() 
+{
+    char vin[20];
+    int i;
+    printf("enetr the serial numbers");
+    for(i=0;i<16;i++)
+    {
+        scanf(" %c ",&vin[i]);
+    }
+    if(vin[10]=='E')
+    {
+         printf("the car is manufactured at EC plant");
+    }
+     else if(vin[10]=='H')
+    {
+         printf("the car is manufactured at HY plant");
+    }
+     else if(vin[10]=='P')
+    {
+         printf("the car is manufactured at PU plant");
+    }
+    else
+    {
+        printf("no match found");
+    }
+    
+   
+    return 0;
+}

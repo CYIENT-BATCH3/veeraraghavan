@@ -1,0 +1,24 @@
+WAP to read the elements and print the elements using 1D array. 
+#include <stdio.h> //header file  
+
+int main()  //main function
+{
+    int a[10],i; //initialize the variables
+    printf("enter the number"); //prints the statement
+    for(i=0;i<10;i++) //for loop is used to print contineous values
+    {
+    scanf("%d",&a[i]); //reads value from the user
+    }
+    printf("the values are");
+    for(i=0;i<10;i++)
+    printf("%d",a[i]); //prints the value
+    return 0;
+}
+
+1 2 3
+1 2 3
+1 2 3
+
+0,2
+1,1
+2,0
