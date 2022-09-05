@@ -1,0 +1,29 @@
+WAP in c to count the total number of alphabet or word in a string.
+algorithm:
+1.statrt
+2.get the character from the user.
+3.count the null character in the given string.
+4.print the number of characters.
+5.stop.
+
+
+program:
+#include <stdio.h> //header file
+#include<string.h> //header file for string.h
+int main() //main function
+{
+    char ch[100]; //character size declaration
+    int count,i;  //initialize count variable
+    printf("enter the string:");  //prits the statement
+    gets(ch); //gets the character from string
+    for(i=0;ch[i]!='\0';i++)  //for loop
+    {
+        if(ch[i]==' ' && ch[i+1] !=' ') //if function to compare 
+            count++;
+        
+    }
+    printf("no words in string is %d",count+1);  //prinst the statement
+    
+    
+    return 0;
+}

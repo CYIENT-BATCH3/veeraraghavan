@@ -1,0 +1,16 @@
+WAP tp add two string using strcat function
+#include <stdio.h> //header file
+#include<string.h> 
+int main() //main function
+{
+    char ch[100],ch2[100];
+    printf("enter the first string:");
+    gets(ch);   //gets the first variable
+    printf("enter the second string:");
+    gets(ch2);  //gets the second variable
+    
+   printf("%s",strcat(ch,ch2)); //strcat function to add two variables
+    
+    
+    return 0;
+}

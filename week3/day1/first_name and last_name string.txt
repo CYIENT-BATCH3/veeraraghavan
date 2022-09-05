@@ -1,0 +1,20 @@
+psuedocode:
+1.statrt
+2.initialize two character variables
+3.gets the two character from user.
+4.prints the two character
+5.stop.
+
+WAP to print the first  name and last name of a person by using string.
+#include <stdio.h> //header file
+//main function
+int main() 
+{
+    char first_nmae[15],last_name[15]; //initialize first 
+    printf("enetr the first name: "); //prints the statement
+    scanf("%s",first_nmae);  //gets the name from the user
+    printf("enter the last name: "); //prints the statement
+    scanf("%s",last_name);  //gets the last name from user
+    printf("the person name is %s%s",first_nmae,last_name);  //prints the statement
+    return 0;
+}

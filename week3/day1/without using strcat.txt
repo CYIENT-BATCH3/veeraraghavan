@@ -1,0 +1,25 @@
+WAP to concatiante two strings without using the inbuild function strcat.
+#include <stdio.h> //header file
+#include<string.h> 
+int main() //main function
+{
+    char ch[100],ch2[100];
+    int i=0,j=0,l;
+    printf("enter the first string:");
+    gets(ch);
+    printf("enter the second string:");
+    gets(ch2);
+    i=strlen(ch);
+    printf("length of string1 %d",i);
+    j=strlen(ch2);
+    printf("\nlength of string2 %d",j);
+    for(i=0;i<=j;i++)
+    {
+        ch[l+i]=ch2[i];
+    }
+    
+   printf("\nthe total string is %s",ch);
+    
+    
+    return 0;
+}
