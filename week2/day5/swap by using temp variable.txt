@@ -1,0 +1,23 @@
+WAP to print swap function by using third variable.
+#include<stdio.h> //header file
+void swap()//swap function
+{
+    int m=10,n=20,temp; //initialize three variables
+    printf("\nbefore interchanging values %d %d",m,n);//prints the statement
+    //use third variable to swap the numbers
+    temp=m;
+    m=n;
+    n=temp;
+    printf("\nafter interchanging the values are %d %d",m,n);
+    
+    
+}
+//main function
+int main()
+{
+    
+   swap();
+}//temp=m;
+    //m=n;
+    //n=temp;
+    //swap(b,a);

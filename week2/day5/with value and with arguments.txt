@@ -1,0 +1,21 @@
+WAP for with with value and with arguments
+#include<stdio.h>   //header file
+#define pi 3.147   //define a pi value as 3.14
+int u;//initialize the variable name as u,o
+float o;
+long sum(int x,float y); //intialize the long variable
+int main()  //main function
+{
+    
+    printf("the nos are"); //prints the statement
+    scanf("%d %f",&u,&o); //reads the values from user
+    sum(u,o);//calling sum function 
+    return 0;
+    
+}
+long sum(int x,float y)//function with datatype and with arguments
+{
+    int sum=x+y;//sum of two values
+    printf("\n%d",sum);//prints the sum value
+    
+}

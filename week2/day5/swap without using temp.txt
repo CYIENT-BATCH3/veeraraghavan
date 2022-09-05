@@ -1,0 +1,20 @@
+WAP to swap two variables without using the temp variable.
+#include<stdio.h> //header file
+void swap()//swap function
+{
+    int m=10,n=20,temp; //initialize three variables
+    printf("\nbefore interchanging values %d %d",m,n);//prints the statement
+    //arithamatic calculation to print the variables
+    m=m+n;
+    n=m-n;
+    m=m-n;
+    printf("\nafter interchanging the values are %d %d",m,n);
+    
+    
+}
+//main function
+int main()
+{
+    
+   swap();
+}

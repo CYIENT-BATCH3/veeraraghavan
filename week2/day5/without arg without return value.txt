@@ -1,0 +1,30 @@
+#include<stdio.h> 
+#define pi 3.147
+void sum()
+{
+    int x=10,y=10;
+    //int y=10;
+    printf("the sum is ");
+    printf("\n%d",x+y);
+    
+}
+void mul()
+{
+    int a=5,b=5;
+    //int b=5;
+    printf("\nthe mutiplication is ");
+    printf("\n%d",a*b);
+}
+
+void diff()
+{
+    int r=10,s=4;
+    printf("\nthe diff of two no is");
+    printf("\n%d",r-s);
+}
+int main()
+{
+    sum();
+    mul();
+   diff();
+}
