@@ -1,0 +1,18 @@
+write a program to print address of variable using pointer.
+#include <stdio.h> //header file
+int main() //main function
+{
+    int a=10,*p; //initialize variable with value
+    float b=1.2, *f; //floating value
+    char c='a', *d;
+    p=&a;
+    f=&b;
+    d=&c;
+    //print the address
+    printf("address of a=%u",p);
+    printf("\naddrress of b=%u",f);
+   printf("\naddrress of c=%u",d);
+   
+   
+    
+}
