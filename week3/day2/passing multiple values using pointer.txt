@@ -1,0 +1,19 @@
+WAP to print the multiple values from user using pointers.
+#include <stdio.h> //main function
+void result(int *,int *,int *,int *);  //function without return and with arguments
+//main function
+int main() {
+    // Write C code here
+    int a,b,c,d; //initialize the variables
+    printf("enetr the values:"); //prints the statement
+    scanf("%d %d %d %d",&a,&b,&c,&d); //reads the value
+    
+    result(&a,&b,&c,&d);  //calling function
+    return 0;
+    
+    
+}
+void result(int *x,int *y,int *z,int *v)  //declaring the function with definition
+{
+    printf("the values are a=%d ,b=%d ,c=%d ,d=%d",*x,*y,*z,*v);
+}
