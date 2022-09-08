@@ -1,0 +1,25 @@
+WAP to perform the typecasting by using void pointer. 
+#include <stdio.h>
+
+int main() {
+    // Write C code here
+    int a=10;
+    float b=2.5;
+    char g='c';
+     double h=50000;
+     char u[2];
+    void *p;  //void pointer
+    p=&a;  //address of a
+    printf("after typecasting: a=%d",*(int *)p);
+    p=&b;   //address of b
+    printf("\nafter typecasting: b=%f",*(float *)p);
+    p=&g;   //address of g
+    printf("\n after typecasting g=%c",*(char *)p);
+    p=&h;   //address of h
+    printf("\n after typecasting h=%lf",*( double *)p);
+    p=&u;   //address of u
+    printf("\n after typecasting u=%s",*(char *)p);
+    
+
+    
+}

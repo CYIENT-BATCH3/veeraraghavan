@@ -1,0 +1,32 @@
+find the smallest and biggest numbsers using array.
+#include <stdio.h>  //header file
+const int max=5; //initialize max=5 as gloabal declaration
+int main()   //main function 
+{
+    // Write C code here
+    int num[]={10,30,20,1000,100};   //consider array values
+    int small=num[0], big=num[0];   //consider the base value as zero for small ad big
+    for(int i=0;i<max;i++) //use for to print the given numbers
+    printf("\nthe numbers are:%d",num[i]);   //print the given numbers
+    //use if else to compare the base index with other index values
+    if(small>num[1])
+        small=num[1];
+    else if(big<num[1])
+         big=num[1];
+     if(small>num[2])
+     small=num[2];
+     else if(big<num[2])
+     big=num[2];
+     if(small>num[3])
+     small=num[3];
+     else if(big<num[3])
+     big=num[3];
+     if(small>num[4])
+     small=num[4];
+     else if(big<num[4])
+     big=num[4];
+     printf("\nsmallest of number is %d",small);   //prints the smallest value among the numbers
+     printf("\nlargest of number is %d",big);     //prints the biggest value among the numbers.
+        
+    
+}
