@@ -1,0 +1,57 @@
+Write a program for considering three sensors like temprature sensor,humidity and water level sensor to get values from the sensor from the 
+functions and print in the main function.
+#include<stdio.h>
+void tempsr(float *);
+void humiditys(float *);
+void waters(float *);
+void main()
+{
+    float temp,humid,*tempr,*humidi,*wat,watr;  //initialize float values 
+    tempr = &temp;                         
+    humidi = &humid;
+    wat=&watr;
+    printf("\n\n");
+    printf("the temprature,humidity and watwr levels at 10 A.M:\n");
+    tempsr(tempr);        //function calling of temp sensor 
+    humiditys(humidi);    //function calling of humidity sensor
+    waters(wat);          //function calling of water sensor.
+    printf("\n\n");
+     printf("the temprature,humidity and watwr levels at 12 P.M:\n");
+    tempsr(tempr);
+    humiditys(humidi);
+    waters(wat);
+    printf("\n\n");
+     printf("the temprature,humidity and watwr levels at 2 P.M:\n");
+   tempsr(tempr);
+    humiditys(humidi);
+    waters(wat);
+    printf("\n\n");
+     printf("the temprature,humidity and watwr levels at 4 P.M:\n");
+   tempsr(tempr);
+    humiditys(humidi);
+    waters(wat);
+    
+}
+//function declaration of different sensors
+   void tempsr(float * temprature)                   
+   {
+       
+       printf("\nenter the temprature : ");
+       scanf("%f",temprature);
+       printf("\nThe temprature is %.2f C",*temprature) ;
+       
+       
+   }
+   void humiditys(float * humidity)                 
+   {
+       printf("\nenter the humidity : ");
+       scanf("%f",humidity);
+       printf("\nThe humidity is %.2f ",*humidity) ;
+   }
+   void waters(float *water)                   
+   {
+       printf("\nenter the water level : ");
+       scanf("%f",water);
+       printf("\nThe water level is is %f per",*water) ;
+   }
+  
