@@ -1,0 +1,22 @@
+WAP to print the remainder and modulo of the given two numbers.
+#include <stdio.h>  //header file
+void result(int ,int ,int *,int *);  //function with argument and without return value
+int main() //main function
+{
+    // Write C code here
+    int a,b,*c,*d;  //initialize two variables with and without pointers
+    c=&a; //store the address of a in c variable
+    d=&b; //store the address of b in d variable
+    printf("enetr the values:");  
+    scanf("%d %d",&a,&b);  //reads the value from user
+    result(a,b,c,d);
+    printf("%d %d",a,b);  //function calling
+    return 0;
+}
+void result(int x,int y,int *z,int *v) //function declaration
+{
+   
+    *z=x/y;  //for getting remainder
+    *v=x%y;   //for getting modulo.
+  
+}

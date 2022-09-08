@@ -1,0 +1,19 @@
+WAP to do arithmatic operations using pointers.
+#include <stdio.h>
+int main()
+{
+    int a=10,*p;
+    int b=1, *f;
+    char c='a', *d;
+    p=&a;
+    f=&b;
+    d=&c;
+    printf("address of a=%u",p);
+    printf("\naddrress of b=%u",f);
+   printf("\naddrress of c=%u",d);
+   printf("\nthe sum is %d",*p-*f);
+   printf("\nvalue of a is =%d",f+2);
+    printf("\nvalue of a is =%u",d+1);
+   
+    
+}

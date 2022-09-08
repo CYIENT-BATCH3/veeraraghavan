@@ -1,0 +1,21 @@
+#include <stdio.h>
+void swap(int *,int *);
+int main()
+{
+    int a=10,b=20;
+    int *p,*q;
+    p=&a;
+    q=&b;
+    printf("before swap variables is a=%d b=%d",a,b);
+    
+     swap(&a,&b);
+     
+}
+void swap(int *c,int *d)
+{
+    int temp;
+    temp=*c;
+    *c=*d;
+    *d=temp;
+    printf("\nafter interchanging the value is a=%d b=%d",*c,*d);
+}
