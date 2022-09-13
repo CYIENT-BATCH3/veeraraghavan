@@ -1,0 +1,34 @@
+psuedocode:
+1.start.
+2.get three student details using different data types.
+3.in main function call the function.
+4.write the function definition with statements.
+5.stop.
+
+
+WAP to print student details using strucute as functions.
+#include<stdio.h>   //header file
+struct student   //give a name for structure
+{
+        int age;        //initialize age as integer data type
+	char name[20];  //initialize name as char data type
+	float marks;     //initialize marks as float data type
+};
+void details(struct student std);
+int main()  //main function
+{
+        struct student std;
+	details(std);   //calling the function
+	return 0;
+}
+void details(struct student std)  //function with no return value and with arguments
+{
+ 	printf("\nenter the student name: ");   //prints the statement
+	scanf("%s",std.name);    //gets the value from user
+	printf("\nenter the student age: ")
+	scanf("%d",&std.age);
+	printf("\nenter the student marks: ");
+		scanf("%f",&std.marks);
+
+
+}
