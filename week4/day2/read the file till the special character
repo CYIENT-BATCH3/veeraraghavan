@@ -1,0 +1,28 @@
+write a program to read the file till any special characters found and print the characters till that.
+#include<stdio.h>
+#include<stdlib.h>//including stdlib.h for exit()
+int main()
+{
+	setbuf(stdout,NULL);
+char ch;//declaring variable
+FILE *fp=fopen("abcd.txt","r");//declaring file pointer and assigning a file to it
+ch=fgetc(fp);//assigning character from file
+if(fp==NULL)//checking the value of pointer
+{
+printf("file not found");
+exit(1);//terminating from the program if an error occurs
+}
+
+do{
+	if(ch != '$')//checking if the character is not *
+	{
+		printf("%c",ch);//printning character
+	ch=fgetc(fp);//assigning character from file
+	}
+	else
+		break;//break if $ found
+
+}while(ch!=EOF);//iterates upto EOF
+fclose(fp);//closing the file
+
+}
