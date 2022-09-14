@@ -1,0 +1,25 @@
+write a program to read a file using 'r' function.
+#include<stdio.h>
+#include<stdlib.h>//including stdlib.h
+int main()
+{
+	setbuf(stdout,NULL);
+char ch;//declaring variable
+FILE *fp=fopen("abcd.txt","r");//declaring file pointer and assigning a file to it
+ch=fgetc(fp);//assigning character from file
+printf("%c",ch);//printning character
+if(fp==NULL)//checking the value of pointer
+{
+printf("file not found");
+exit(1);//terminating from the program if an error occurs
+}
+
+while(ch != EOF)//iterates upto EOF
+{
+	ch=fgetc(fp);//assigning character from file
+
+	printf("%c",ch);//printning character
+}
+fclose(fp);//closing the file
+
+}
