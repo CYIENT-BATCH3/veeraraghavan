@@ -1,0 +1,29 @@
+WAP for call by value with functions without using structures.
+#include<stdio.h>   //header file
+void details(int *empid,char *name[20],int *salary);   //function without return and with arguments
+int main()   //main fun
+{  
+  	setbuf(stdout,NULL);
+	int empid;   //initialize int as empid
+	char name[20];  //give char name
+	int salary;   //float salary
+	printf("enter employee deatils");
+	 printf("\nenter the emp id: ");
+	    scanf("%d",&empid);    //reads the value from user
+	    printf("\nenter the emp name:"); 
+	    scanf("%s",&name);
+	    printf("\nenter the emp salary:");
+	        scanf("%d",&salary);
+	details(&empid,name,&salary);   //calliung function
+	return 0;
+
+}
+//function declaration
+void details(int *empid,char *name[20],int *salary)
+{
+
+
+        fflush(stdout);
+        printf("\nthe emp name is %s\n the emp id is %d\n the emp salary is %d",name,*empid,*salary);
+
+}

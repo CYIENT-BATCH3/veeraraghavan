@@ -1,0 +1,31 @@
+WAP to print employee deails using structure as functions with call by reference method.
+
+#include<stdio.h>
+#include<string.h>
+struct employee
+{
+	int emp_id;
+	char emp_name[20];
+	int emp_salary;
+};
+void details(struct employee *emp);   //function without return and with arguments 
+int main()
+{
+	setbuf(stdout,NULL);
+	struct employee empl;
+	printf("enter the employee details");
+	details(&empl);
+	return 0;
+}
+void details(struct employee *emp)   //function definition with pointers
+{
+	printf("\nenter the employee id: ");
+	scanf("%d",emp->emp_id);
+	printf("\nenter the employee name: ");
+	scanf("%s",emp->emp_name);
+	printf("\nenter the employee salary: ");
+		scanf("%d",emp->emp_salary);
+	printf("EMP ID\t\t EMP NAME\t\t EMP SALARY");
+	printf("\n%d\t\t %s\t\t %d",emp->emp_id,emp->emp_name,emp->emp_salary);  //printing the employee details.
+
+}
