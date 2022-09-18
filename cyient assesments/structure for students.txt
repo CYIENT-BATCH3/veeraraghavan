@@ -1,0 +1,50 @@
+Write a C program in structure for creating 5 student details with their name,id and age.
+
+Algorithm:
+1.start.
+2.create a structure with student details like name,age and id_no.
+3.use for loop for getting  the 5 student details.
+4.get the data from the user and print the details in the cansole.
+5.use one more for loop and print all the student details in a sequence manner.
+6.stop.
+
+code:
+ 
+#include<stdio.h>   //header file
+struct student   //create a strucute for student
+{
+	//create three student deatils like age,name,id_no
+        int student_id;
+	char student_name[10];
+	int student_age;
+};
+int main()   //main function
+{
+	setbuf(stdout,NULL);   //used to clear the cache and prints the result in cansole
+	struct student stud[10];   //create variable name with size for student
+	int n;
+	printf("enter how many student details you want ");
+	scanf("%d",&n);   //get the value from use to know how many student details they want to print.
+	for(int iteration=1;iteration<=n;iteration++)  //use for to get student details
+	{
+       //prints and gets the data from the user like student name,age and roll no.
+     printf("\nenter the student id:");
+	scanf("%d",&stud[iteration].student_id);
+	printf("\nenter the student name:");
+	fflush(stdout);
+	scanf("%s",stud[iteration].student_name);
+	printf("\nenter the student age:");
+	fflush(stdout);
+	scanf("%d",&stud[iteration].student_age);
+	}
+	printf("\nName\t\t ID\t\t  AGE");
+	for(int iteration=1;iteration<=n;iteration++)
+	{
+        //prints the entire student details in a sequence mannner
+	printf("\n%s\t\t %d\t\t %d",stud[iteration].student_name,stud[iteration].student_id,stud[iteration].student_age);
+	}
+
+	return 0;
+
+
+}

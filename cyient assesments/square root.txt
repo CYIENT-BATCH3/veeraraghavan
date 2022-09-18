@@ -1,0 +1,24 @@
+Write a C program for square of a numbers using macros.
+
+Algorithm:
+1.start
+2.define macros for finding square root before main function using #define.
+3.formula for square root is i.e..the given variable name be 'a' then a*a.
+4.enter a number from keyboard and use the macros to square the given numbers and print the result.
+5.stop.
+
+code:
+
+#include<stdio.h>//header file
+#define sqrt r*r  //use macros to perform squar root operation in main function 
+int main()   //main function
+{
+	setbuf(stdout,NULL);   //used to clears the cache and prints the result in cansole. 
+	int r,c;  //initialize two variables
+	printf("enter the values:");   
+	scanf("%d",&r);  //gets the value from user
+	c=sqrt;  //squart the given value
+	printf("the square root of given value is %d",c);   //prints the result.
+
+
+}
