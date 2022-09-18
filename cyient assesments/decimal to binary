@@ -1,0 +1,35 @@
+Write a program to convert decimal number to binary and display the binary number in console.
+
+Algorithm:
+   1.initialize three variables
+   2.enter the decimal values to convert to binary.
+   3.use for loop to get the contineous loop
+   4.use modulo and divident to get the quotent and remainder
+   5.print the binary value.
+   6.stop.
+
+code:
+
+#include<stdio.h>
+int main()//main function
+{
+	setbuf(stdout,NULL);
+	int binary[5],number,iteration,n;     //initialize three variables
+	printf("enter the decimal number to convert to binary:");  //prints the statement
+	scanf("%d",&number);             //gets the value from user
+	n=sizeof(number);
+	for(iteration=0;number>0;iteration++)    //for loop is used for contineous interation
+	{
+		binary[iteration]=number%2;    //modulo operartor is used to get the reamainder
+		number=number/2;          //divide is used to get the quotient
+	}
+	printf("binary number is :");      //prints the statement
+	for(iteration=iteration-1;iteration>=0;iteration--)
+	{
+
+		printf("%d",binary[iteration]);       //prints the binary values
+	}
+	return 0;
+}
+
+
