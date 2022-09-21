@@ -1,0 +1,49 @@
+#include<stdio.h>
+void set_bit(int number,int position);
+void clear_bit(int number,int position);
+void toggle_bit(int number,int position);
+int position;
+int main()//main function
+{
+	setbuf(stdout,NULL);
+	int binary[5],number,iteration;     //initialize three variables
+	printf("enter the decimal number to convert to binary:");  //prints the statement
+	scanf("%d",&number);             //gets the value from user
+	for(iteration=0;number>0;iteration++)    //for loop is used for contineous interation
+	{
+		binary[iteration]=number%2;    //modulo operartor is used to get the reamainder
+		number=number/2;          //divide is used to get the quotient
+	}
+
+	printf("binary number is :");      //prints the statement
+	for(iteration=iteration-1;iteration>=0;iteration--)
+	{
+
+		printf("%d",binary[iteration]);       //prints the binary values
+	}
+	printf("\nenter the position: ");
+	scanf("%d",&position);
+	set_bit(number,position);
+	clear_bit(number,position);
+	toggle_bit(number,position);   //function defination
+
+	return 0;
+}
+void set_bit(int number,int position)   //function defination
+{
+	number = number|(1<<position);
+	printf("\nafter a setting a bit:%d",number);  //prints the setting value
+}
+void clear_bit(int number,int position)   //function defination
+{
+
+	number = number &~(1<<position);
+	printf("\nafter clearing a bit:%d",number);  //prints the setting value
+}
+void toggle_bit(int number,int position)   //function defination
+{
+
+	number = number ^ (1<<position);
+	printf("\nafter togling a bit:%d",number);  //prints the setting value
+}
+
