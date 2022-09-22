@@ -1,3 +1,6 @@
+WRITE a program to set a bit, clear a bit and toggle bit.
+code:
+
 #include<stdio.h>
 void set_bit(int number,int position);
 void clear_bit(int number,int position);
