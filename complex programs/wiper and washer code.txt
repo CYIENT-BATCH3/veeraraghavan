@@ -1,0 +1,273 @@
+
+ALGORITHIM FOR WIPER AND WASHER:
+
+1.CREATE A FILE AS NAMED BY WIPER AND WASHER SOURCE CODE .C CONFIGURE THE MICRO CONTROLLER.
+2.SET2,3 IS EQUAL TO 0X00 THE DYNAMIC FREQUENCY REFERRED BY CRYSTAL WHICH IS IN THE MICRO CONTROLLER.
+3.WRITE A FUNCTION FOR SETTING BAUD RATE USING THE REGISTER WHICH IS "BRGCON" WITH THE HELP OF GIVEN VALUES. BEFORE DOING THIS SET CONFIGURATION MODE AND AFTER IT IS IN NORMAL MODE.
+4.WRITE A FUNCTION FOR CAN_INITILIZATION IN IT THE RB2 IS TX AND RX SET THAT IN HIGH AND LO RESPECTIVELY USING "TRIS".
+5.WRITE A FUNCTION FOR GLOBAL INTERRUPT USING GPE AND PEIE ENABLE.
+6.WRITE A FUNCTION FOR INTERRUPT SERVICE ROUTINE ISR USING RIEIF REGISTER AND WHEN IT IS TRIGGERED IN THE INSIDE CONDITION SET IT LOW CALLED READ.
+7.WRITE A FUNCTION FOR READ CAN_READ. IN IT USING "RXB0DM" USING BUFFER REGISTER AND "RXB0SIDH" FOR HIGH AND "RXB0SIDL" FOR LOW.
+8.IN MAIN FUNCTION WRITE A CONDITIONS.
+9.CALL ALL THE FUNCTIONS IN THE MAIN.
+10.IN CONDITION WRITE IN WHILE LOOP IF PARTICULAR BIT 2,3 IS EQUAL TO 0X00-0X03 WRITE A MESSAGE TO THE SENDER WITH SAME ID OR BLINK LED.
+
+code:
+
+// PIC18F458 Configuration Bit Settings
+
+// 'C' source line config statements
+
+// CONFIG1H
+#pragma config OSC = HS         // Oscillator Selection bits (HS oscillator)
+#pragma config OSCS = OFF       // Oscillator System Clock Switch Enable bit (Oscillator system clock switch option is disabled (main oscillator is source))
+
+// CONFIG2L
+#pragma config PWRT = OFF       // Power-up Timer Enable bit (PWRT disabled)
+#pragma config BOR = OFF        // Brown-out Reset Enable bit (Brown-out Reset disabled)
+#pragma config BORV = 25        // Brown-out Reset Voltage bits (VBOR set to 2.5V)
+
+// CONFIG2H
+#pragma config WDT = OFF        // Watchdog Timer Enable bit (WDT disabled (control is placed on the SWDTEN bit))
+#pragma config WDTPS = 128      // Watchdog Timer Postscale Select bits (1:128)
+
+// CONFIG4L
+#pragma config STVR = OFF       // Stack Full/Underflow Reset Enable bit (Stack Full/Underflow will not cause Reset)
+#pragma config LVP = OFF        // Low-Voltage ICSP Enable bit (Low-Voltage ICSP disabled)
+
+// CONFIG5L
+#pragma config CP0 = OFF        // Code Protection bit (Block 0 (000200-001FFFh) not code protected)
+#pragma config CP1 = OFF        // Code Protection bit (Block 1 (002000-003FFFh) not code protected)
+#pragma config CP2 = OFF        // Code Protection bit (Block 2 (004000-005FFFh) not code protected)
+#pragma config CP3 = OFF        // Code Protection bit (Block 3 (006000-007FFFh) not code protected)
+
+// CONFIG5H
+#pragma config CPB = OFF        // Boot Block Code Protection bit (Boot Block (000000-0001FFh) not code protected)
+#pragma config CPD = OFF        // Data EEPROM Code Protection bit (Data EEPROM not code protected)
+
+// CONFIG6L
+#pragma config WRT0 = OFF       // Write Protection bit (Block 0 (000200-001FFFh) not write protected)
+#pragma config WRT1 = OFF       // Write Protection bit (Block 1 (002000-003FFFh) not write protected)
+#pragma config WRT2 = OFF       // Write Protection bit (Block 2 (004000-005FFFh) not write protected)
+#pragma config WRT3 = OFF       // Write Protection bit (Block 3 (006000-007FFFh) not write protected)
+
+// CONFIG6H
+#pragma config WRTC = OFF       // Configuration Register Write Protection bit (Configuration registers (300000-3000FFh) not write protected)
+#pragma config WRTB = OFF       // Boot Block Write Protection bit (Boot Block (000000-0001FFh) not write protected)
+#pragma config WRTD = OFF       // Data EEPROM Write Protection bit (Data EEPROM not write protected)
+
+// CONFIG7L
+#pragma config EBTR0 = OFF      // Table Read Protection bit (Block 0 (000200-001FFFh) not protected from Table Reads executed in other blocks)
+#pragma config EBTR1 = OFF      // Table Read Protection bit (Block 1 (002000-003FFFh) not protected from Table Reads executed in other blocks)
+#pragma config EBTR2 = OFF      // Table Read Protection bit (Block 2 (004000-005FFFh) not protected from Table Reads executed in other blocks)
+#pragma config EBTR3 = OFF      // Table Read Protection bit (Block 3 (006000-007FFFh) not protected from Table Reads executed in other blocks)
+
+// CONFIG7H
+#pragma config EBTRB = OFF      // Boot Block Table Read Protection bit (Boot Block (000000-0001FFh) not protected from Table Reads executed in other blocks)
+
+// #pragma config statements should precede project file includes.
+// Use project enums instead of #define for ON and OFF.
+
+#include <xc.h>
+#define ENABLE 1   //define 1 as enable and 0 for disable
+#define DISABLE 0
+#define _XTAL_FREQ 20000000   //crystal oscillator ferquency range will be 2mhz
+enum modes{CONFIG_MODE = 0X80,NORMAL_MODE = 0X08};
+char rain_sensor=0x0C,water_tank=0xE0;//in enum keyword consider two modes as config mode and normal mode
+char data_byte[11];//define a char data type with size of 11
+void sys_init();  //function for sysytem initialization
+void can_init();  //function for CAN initialization
+void set_mode(char);  //function for set mode
+void get_mode(char);  //function for grt mode
+void set_baudrate();  //function to set the baud rate
+void set_mask();   //function for set mask
+void set_filter();   //function for set filter
+void can_read();   //function for CAN read
+void can_write();   //function for CAN write
+char reg_val=0x60;   //set the initial value be 0x60
+char reg_val1=0,reg_val2=0;   
+void set_byte();   //function to set the byte
+void check_status();   //function to check the status
+//main function
+void main(void)
+{   
+    TRISBbits.RB0 = 0;   //consider RB0 as output pin
+    PORTBbits.RB0 = 0;    //make RB0 pin as initial off
+     
+    sys_init();    //calling sysytem iniilaization function
+    can_init();    //calling function
+    set_baudrate();  //calling function to set_baudrate
+    set_mask();    //calling set mask function
+    set_filter();   //calling set filter in the main function
+    //while loop
+    while(1)
+    {
+          
+       can_write();  //inside while loop call can write function for every 2sec the ECU will send data to the bus master
+        __delay_ms(2000);   //delay command for 2sec
+        
+    }
+}
+/*-------------- initialization of can bus -----------------------------------*/
+//function definition
+void sys_init()    
+{
+    GIE = ENABLE;    //GIE-Global Interrupt enable
+    PEIE = ENABLE;   //Peripheral Interrupt Enable
+    PIE3bits.RXB0IE =ENABLE;  //  RXBnIE (Receive Buffer ‘n’ Interrupt Enable) bit from PIE3 (Peripheral Interrupt Enable) register.
+    IPR3bits.RXB0IP=ENABLE; // RXBnIP (Receive Buffer ‘n’ Interrupt Priority) bit from IPR3 (Peripheral Interrupt Priority) register.
+    
+}
+void can_init()
+{
+    //The CAN Transmitter can be accessed via pin RB2 and the Receiver is accessed via pin RB3 on the board.
+    TRISBbits.RB3 = ENABLE;   
+    TRISBbits.RB2 = DISABLE;
+}
+
+
+
+void set_baudrate() //A baud rate can be defined as number of signal units per second
+{
+    //here the speed of baud rate is 250kbps 
+    set_mode(CONFIG_MODE);   //set config mode
+    get_mode(CONFIG_MODE);  //check the status of the config mode
+    //For 250 kbps, the values are as follows
+    BRGCON1 = 0XC1;
+    BRGCON2 = 0XAE;
+    BRGCON3 = 0X45;
+    CIOCON = 0X20;
+    set_mode(NORMAL_MODE);  //again the microcontroller shhould come to normal mode
+   
+    
+   
+}
+//function definition for set config mode
+void set_mode(char mode)
+{
+   CANCON = mode;  
+}
+
+//function definition for check the status of the mode
+void get_mode(char mode)
+{
+    while(CANCON != mode);
+}
+
+/*---------------- receiver code ----------------------------------------------*/
+void set_mask()  //function definition for set mask
+{
+    //the value 0x00 enables the receiver to receive all the messages on the CAN bus.
+    RXM0SIDH = 0x00;  // Receive Acceptance Mask ‘n’ Standard Identifier Mask, Low Byte register.
+    RXM0SIDL = 0x00;   // Receive Acceptance Mask ‘n’ Standard Identifier Mask, high Byte register.
+}
+
+void set_filter()  //
+{
+    //Setting the RXFnSIDH and RXFnSIDL registers to the value 0x00 enables the receiver to receive all the messages on the CAN bus)
+    RXF0SIDH = 0x00; //Receive Acceptance Filter ‘0’ Standard Identifier filter, High Byte register).
+    RXF0SIDL = 0x00; //Receive Acceptance Filter ‘0’ Standard Identifier filter, low Byte register).
+    RXF1SIDH = 0x00; //Receive Acceptance Filter ‘1’ Standard Identifier filter, High Byte register).
+    RXF1SIDL = 0x00; //Receive Acceptance Filter ‘1’ Standard Identifier filter, low Byte register).
+    
+}
+
+//function definition for can read function
+void can_read()
+{
+    CANCON = 0x0E;   //refer data sheet and make bit 3 to 1 as receive buffer and the corresponding hex value is 0x0E.  
+    RXB0CON = 0x00;  // RECEIVE BUFFER CONTROL REGISTER ...0x00 receives all valid messages
+    
+  // Then assign the 8 RXBnDm (Receive Buffer ‘n’ Data Field Byte ‘m’ Registers) in array.
+      data_byte[0] = RXB0D0;
+      data_byte[1] = RXB0D1;
+      data_byte[2] = RXB0D2;
+      data_byte[3] = RXB0D3;
+      data_byte[4] = RXB0D4;
+      data_byte[5] = RXB0D5;
+      data_byte[6] = RXB0D6;
+      data_byte[7] = RXB0D7;
+      data_byte[8] = RXB0DLC;
+      data_byte[9] = RXB0SIDL;
+      data_byte[10]= RXB0SIDH;
+      
+    //Initialize the respective RXBnCON register such that the RXFUL bit is cleared, receives all valid messages
+    RXB0CONbits.RXFUL = 0; //RXFUL (Receive Full Status
+    
+    check_status();  //check status
+    
+}
+void check_status()
+{
+    if(data_byte[9]==0x20 && data_byte[10]==0x44)  //assigning values from particular ID
+    {
+        rain_sensor=data_byte[3] &(0x0c);  //check the data_byte[3] using AND operator with rain sensor
+        water_tank=data_byte[3] & (0xe0);  //check the data_byte[3] using AND operator with water tank
+        set_byte();  //calling the set_byte      
+    } 
+}
+void set_byte()
+{
+    //checking the values with the rain sensor values
+    if(rain_sensor==0x00)
+      reg_val1=0x00;
+    else if(rain_sensor==0x04)
+        reg_val1=0x04;
+    else if(rain_sensor==0x08)
+        reg_val1=0x08;
+    else if(rain_sensor==0x0c)
+        reg_val1=0x0c;
+    //checking the values with the rain water tank
+    if(water_tank==0x20)
+      reg_val2=0x20;
+    else if(rain_sensor==0x40)
+        reg_val2=0x40;
+    else if(rain_sensor==0x60)
+        reg_val2=0x60;
+    else if(rain_sensor==0x80)
+        reg_val2=0x80;
+    //comparing both the values and storing the values in variable using OR operator
+    reg_val=reg_val1|reg_val2;
+}
+//interrupt function definition
+void __interrupt() ISR1()  //ISR- interrupt service routine
+{
+   //  Check if the respective Receive buffer Interrupt Flag (RXBnIF) is set 
+    if(PIR3bits.RXB0IF)  // PIR-3 PERIPHERAL INTERRUPT REQUEST (FLAG) REGISTER 3                      
+    {  
+        PIR3bits.RXB0IF = DISABLE;  //if the condition is disable then perform can read function
+        can_read(); //calling can_read function
+        
+    }
+}
+
+
+/*----------------------------- transmitter code ----------------------*/
+
+
+//function definition for can write 
+void can_write()
+{
+    __delay_ms(500);  //initial delay for 500 ms
+     CANCON = NORMAL_MODE;  //initial cancon in normal mode CANCON(CAN control register)
+     //CANTX pin will drive VDD when recessive
+     CIOCON = 0X20;  //CIOCON (CAN input and output control register)
+    
+     
+     TXB0SIDH = 0x22;      //TRANSMIT BUFFER n STANDARD IDENTIFIER HIGH BYTE REGISTERS 
+     TXB0SIDL = 0x40;    // TRANSMIT BUFFER n STANDARD IDENTIFIER, LOW BYTE REGISTERS    
+     // TRANSMIT BUFFER n DATA LENGTH CODE, 0 TO 7 
+     TXB0DLC = 0X08;    
+     TXB0D0  = 0X00;
+     TXB0D1  = 0X00;
+     TXB0D2  = 0X00;
+     TXB0D3  = reg_val;   //in third byte check 
+     TXB0D4  = 0X00;
+     TXB0D5  = 0X00;
+     TXB0D6  = 0X00;
+     TXB0D7  = 0X00;
+     TXB0CON = 0x08;    //transmit buffer and control register
+}
+
+
+
