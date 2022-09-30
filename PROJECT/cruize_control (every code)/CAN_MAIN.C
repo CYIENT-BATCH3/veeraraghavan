@@ -1,9 +1,4 @@
-/*
- * File:   CAN_MAIN.C
- * Author: sk69648
- *
- * Created on September 27, 2022, 12:07 PM
- */
+
 
 
 #include"CAN_COMM.h"                                    
